@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Programación</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/vue3.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="titulo-seccion">
+            <h2>{{ titulo }}</h2>
+        </div>
+        <div class="encuesta-seccion">
+            <div class="encuesta-contenedor">
+                <label>{{ preguntaPrincipal }}</label>
+                <div>
+                    <input type="radio" id="si" value="sí" v-model="gustaProgramar" @change="reiniciarPreguntas">
+                    <label for="si">Sí</label>
+                    <input type="radio" id="no" value="no" v-model="gustaProgramar" @change="reiniciarPreguntas">
+                    <label for="no">No</label>
+                </div>
+
+                <div v-if="gustaProgramar === 'no'">
+                    <p>Gracias por contestar la encuesta.</p>
+                </div>
+
+                <div v-if="gustaProgramar === 'sí'">
+                    <br>
+                    <div>
+                        <label class="label-grande" for="aniosProgramando">¿Cuántos años llevas programando?</label>
+                        <input type="text" id="aniosProgramando" v-model="aniosProgramando">
+                    </div>
+
+                    <div v-if="aniosProgramando">
+                        <label for="experienciaProgramando">Cuéntanos tus experiencias programando:</label>
+                        <input type="text" id="experienciaProgramando" v-model="experienciaProgramando">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="label-grande" for="lenguajeActual">¿Cuántos lenguajes de programación que conoces?</label>
+                        <br>
+                        <label class="label-grande" for="lenguajeActual">Ingresa los lenguajes de programación que conoces:</label>
+                        <input type="text" id="lenguajeActual" v-model="lenguajeActual">
+                        <button @click="agregarLenguaje">Agregar</button>
+                    </div>
+                    <p>Lenguajes de programación conocidos:</p>
+                    <ul>
+                        <li v-for="lenguaje in lenguajes" :key="lenguaje" v-text="lenguaje"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/java2.js"></script>
+</body>
+
+</html>
